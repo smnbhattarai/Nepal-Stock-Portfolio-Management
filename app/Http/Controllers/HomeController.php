@@ -6,8 +6,16 @@ use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
+    /**
+     * Site index page. The welcome page
+     * @return \Illuminate\Contracts\View\View
+     */
+    public function welcome()
+    {
+        return view('welcome');
+    }
 
-    public function index()
+    public function dashboard()
     {
         return view('dashboard');
     }

@@ -5,7 +5,14 @@
         <div class="form-form">
             <div class="form-form-wrap">
                 <div class="form-container">
+
                     <div class="form-content">
+
+                        <div class="col-md-12 col-sm-12 col-12 text-center mb-5">
+                            <a href="{{ url('/') }}" class="navbar-brand-privacy">
+                                <img src="{{ asset('assets/img/90x90.png') }}" class="img-fluid" alt="{{ config('app.fullName') }}">
+                            </a>
+                        </div>
 
                         <h1 class="">Sign In</h1>
                         <p class="">Log in to your account to continue.</p>
@@ -21,8 +28,13 @@
                                         <circle cx="12" cy="12" r="4"></circle>
                                         <path d="M16 8v5a3 3 0 0 0 6 0v-1a10 10 0 1 0-3.92 7.94"></path>
                                     </svg>
-                                    <input id="email" name="email" type="email" class="form-control"
+                                    <input id="email" name="email" type="email" class="form-control @error('email') is-invalid @enderror"
                                            placeholder="e.g email@example.com">
+                                    @error('email')
+                                    <div class="invalid-feedback">
+                                        {{ $message }}
+                                    </div>
+                                    @enderror
                                 </div>
 
                                 <div id="password-field" class="field-wrapper input mb-2">
@@ -37,7 +49,7 @@
                                         <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
                                         <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
                                     </svg>
-                                    <input id="password" name="password" type="password" class="form-control"
+                                    <input id="password" name="password" type="password" class="form-control @error('password') is-invalid @enderror"
                                            placeholder="Password">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                                          fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
@@ -45,6 +57,11 @@
                                         <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
                                         <circle cx="12" cy="12" r="3"></circle>
                                     </svg>
+                                    @error('password')
+                                    <div class="invalid-feedback">
+                                        {{ $message }}
+                                    </div>
+                                    @enderror
                                 </div>
                                 <div class="d-sm-flex justify-content-between">
                                     <div class="field-wrapper">

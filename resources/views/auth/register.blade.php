@@ -7,6 +7,12 @@
                 <div class="form-container">
                     <div class="form-content">
 
+                        <div class="col-md-12 col-sm-12 col-12 text-center mb-5">
+                            <a href="{{ url('/') }}" class="navbar-brand-privacy">
+                                <img src="{{ asset('assets/img/90x90.png') }}" class="img-fluid" alt="{{ config('app.fullName') }}">
+                            </a>
+                        </div>
+
                         <h1 class="">Register</h1>
                         <p class="signup-link register">Already have an account? <a href="{{ route('login') }}">Log
                                 in</a></p>
@@ -98,7 +104,7 @@
                                         <label class="new-control new-checkbox checkbox-primary">
                                             <input type="checkbox" class="new-control-input" id="agreeTerms">
                                             <span class="new-control-indicator"></span><span>I agree to the <a
-                                                    href="javascript:void(0);">  terms and conditions </a></span>
+                                            target="_blank" href="{{ route('page', 'terms') }}">  terms and conditions </a></span>
                                         </label>
                                     </div>
 
