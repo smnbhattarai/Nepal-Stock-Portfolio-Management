@@ -28,7 +28,7 @@
                 </a>
             </div>
             <div class="col-md-12 col-sm-12 col-12 text-center">
-                <h5 class="main-heading">Verify Email - {{ config('app.name') }}</h5>
+                <h5 class="main-heading">Reset Password - {{ config('app.name') }}</h5>
             </div>
         </div>
     </div>
@@ -40,27 +40,39 @@
 
             <div class="privacy-content-container">
 
-                <h5 class="mt-5">Please verify your E-Mail address</h5>
+                <h5 class="mt-3">Reset password</h5>
 
-                <p>Please follow the link provided in email to continue the verification process.</p>
+                <p>Please fill in the form below to reset your password.</p>
 
-                <h5 class="mt-5">Didn't receive verification email?</h5>
-
-                <p>Please click on the button below to resend verification link.</p>
-
-                @if (session('status') == 'verification-link-sent')
-                    <div class="alert alert-success mt-5" role="alert">
-                        <strong>Success!</strong> A new email verification link has been emailed to you!
-                    </div>
-                @endif
-
-                <form action="{{ url('email/verification-notification') }}" method="post">
+                <form action="{{ url('/reset-password') }}" method="post">
                     @csrf
-                    <div class="d-sm-flex justify-content-between mt-5">
-                        <div class="field-wrapper">
-                            <button type="submit" class="btn btn-primary">Resend verification E-Mail</button>
-                        </div>
+
+                    <input type="hidden" name="token" value="{{ request()->route('token') }}">
+
+                    <div class="form-group col-md-6" style="padding-left: 0;">
+                        <input id="email" type="email" name="email" value="{{ old('email') }}" placeholder="Email..." class="form-control" required>
+                        @error('email')
+                        <strong class="text-danger">{{ $message }}</strong>
+                        @enderror
                     </div>
+
+                    <div class="form-group col-md-6" style="padding-left: 0;">
+                        <input id="password" type="password" name="password" value="{{ old('password') }}" placeholder="Password..." class="form-control" required>
+                        @error('password')
+                        <strong class="text-danger">{{ $message }}</strong>
+                        @enderror
+                    </div>
+
+                    <div class="form-group col-md-6" style="padding-left: 0;">
+                        <input id="password_confirmation" type="password" name="password_confirmation" value="{{ old('password_confirmation') }}" placeholder="Confirm Password..." class="form-control" required>
+                    </div>
+
+                     <div class="form-group">
+                         <button type="submit" class="btn btn-primary">Reset Password</button>
+                     </div>
+
+
+
                 </form>
 
             </div>

@@ -17,6 +17,12 @@
                         <h1 class="">Sign In</h1>
                         <p class="">Log in to your account to continue.</p>
 
+                        @if (session('status'))
+                            <div class="alert alert-success mt-2" role="alert">
+                                {{ session('status') }}
+                            </div>
+                        @endif
+
                         <form class="text-left" action="{{ url('login') }}" method="post">
                             <div class="form">
                                 @csrf
