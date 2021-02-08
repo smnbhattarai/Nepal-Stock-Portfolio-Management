@@ -4,7 +4,7 @@
     <nav id="sidebar">
         <div class="shadow-bottom"></div>
         <ul class="list-unstyled menu-categories" id="accordionExample">
-            {{ request()->is() }}
+
             <li class="menu active">
                 <a href="{{ route('dashboard') }}" @if(request()->routeIs('dashboard')) data-active="true" @endif aria-expanded="false" class="dropdown-toggle">
                     <div class="">
