@@ -18,6 +18,9 @@
     <link rel="stylesheet" type="text/css" href="{{ asset("assets/css/forms/theme-checkbox-radio.css") }}">
     <link rel="stylesheet" type="text/css" href="{{ asset("assets/css/forms/switches.css") }}">
     <link href="{{ asset('assets/css/users/user-profile.css') }}" rel="stylesheet" type="text/css" />
+
+    @stack('css')
+
 </head>
 <body class="{{ $bodyClass ?? '' }}">
 
@@ -79,6 +82,8 @@
 <script src="{{ asset("assets/js/forms/bootstrap_validation/bs_validation_script.js") }}"></script>
 
 <script src="{{ mix('/js/main.js') }}"></script>
+
+@stack('js')
 
 </body>
 </html>

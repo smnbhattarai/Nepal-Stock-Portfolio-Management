@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ProfileRequest;
 use App\Models\Profile;
 use Illuminate\Http\Request;
 
@@ -48,14 +49,12 @@ class ProfileController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Profile  $profile
-     * @return \Illuminate\Http\Response
+     * @param Profile $profile
+     * @return \Illuminate\Contracts\View\View
      */
     public function edit(Profile $profile)
     {
-        //
+        return view('profile.edit', compact('profile'));
     }
 
     /**
@@ -65,9 +64,9 @@ class ProfileController extends Controller
      * @param  \App\Models\Profile  $profile
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Profile $profile)
+    public function update(ProfileRequest $request, Profile $profile)
     {
-        //
+        dd($request->all());
     }
 
     /**
