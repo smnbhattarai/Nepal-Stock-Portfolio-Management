@@ -19,9 +19,6 @@
                                 <div id="general-info" class="section general-info">
                                     <div class="info">
                                         <h6 class="">General Information</h6>
-                                        @if($errors->any())
-                                            {!! implode('', $errors->all('<div>:message</div>')) !!}
-                                        @endif
                                         <div class="row">
                                             <div class="col-lg-11 mx-auto">
                                                 <div class="row">
@@ -63,7 +60,7 @@
                                                                                 <option value="">Day</option>
                                                                                 @for($i = 1; $i <=32; $i++)
                                                                                     <option value="{{ $i }}"
-                                                                                            @if($i == $profile->birth_day) selected @endif>{{ $i }}</option>
+                                                                                            @if($i == old('birth_day', $profile->birth_day)) selected @endif>{{ $i }}</option>
                                                                                 @endfor
                                                                             </select>
                                                                         </div>
@@ -72,51 +69,51 @@
                                                                                     name="birth_month">
                                                                                 <option value="">Month</option>
                                                                                 <option value="1"
-                                                                                        @if($profile->birth_month == 1) selected @endif>
+                                                                                        @if(old('birth_month', $profile->birth_month) == 1) selected @endif>
                                                                                     Jan
                                                                                 </option>
                                                                                 <option value="2"
-                                                                                        @if($profile->birth_month == 2) selected @endif>
+                                                                                        @if(old('birth_month', $profile->birth_month) == 2) selected @endif>
                                                                                     Feb
                                                                                 </option>
                                                                                 <option value="3"
-                                                                                        @if($profile->birth_month == 3) selected @endif>
+                                                                                        @if(old('birth_month', $profile->birth_month) == 3) selected @endif>
                                                                                     Mar
                                                                                 </option>
                                                                                 <option value="4"
-                                                                                        @if($profile->birth_month == 4) selected @endif>
+                                                                                        @if(old('birth_month', $profile->birth_month) == 4) selected @endif>
                                                                                     Apr
                                                                                 </option>
                                                                                 <option value="5"
-                                                                                        @if($profile->birth_month == 5) selected @endif>
+                                                                                        @if(old('birth_month', $profile->birth_month) == 5) selected @endif>
                                                                                     May
                                                                                 </option>
                                                                                 <option value="6"
-                                                                                        @if($profile->birth_month == 6) selected @endif>
+                                                                                        @if(old('birth_month', $profile->birth_month) == 6) selected @endif>
                                                                                     Jun
                                                                                 </option>
                                                                                 <option value="7"
-                                                                                        @if($profile->birth_month == 7) selected @endif>
+                                                                                        @if(old('birth_month', $profile->birth_month) == 7) selected @endif>
                                                                                     Jul
                                                                                 </option>
                                                                                 <option value="8"
-                                                                                        @if($profile->birth_month == 8) selected @endif>
+                                                                                        @if(old('birth_month', $profile->birth_month) == 8) selected @endif>
                                                                                     Aug
                                                                                 </option>
                                                                                 <option value="9"
-                                                                                        @if($profile->birth_month == 9) selected @endif>
+                                                                                        @if(old('birth_month', $profile->birth_month) == 9) selected @endif>
                                                                                     Sep
                                                                                 </option>
                                                                                 <option value="10"
-                                                                                        @if($profile->birth_month == 10) selected @endif>
+                                                                                        @if(old('birth_month', $profile->birth_month) == 10) selected @endif>
                                                                                     Oct
                                                                                 </option>
                                                                                 <option value="11"
-                                                                                        @if($profile->birth_month == 11) selected @endif>
+                                                                                        @if(old('birth_month', $profile->birth_month) == 11) selected @endif>
                                                                                     Nov
                                                                                 </option>
                                                                                 <option value="12"
-                                                                                        @if($profile->birth_month == 12) selected @endif>
+                                                                                        @if(old('birth_month', $profile->birth_month) == 12) selected @endif>
                                                                                     Dec
                                                                                 </option>
                                                                             </select>
@@ -127,7 +124,7 @@
                                                                                 <option value="">Year</option>
                                                                                 @for($i = date('Y'); $i >= (date('Y') - 100); $i--)
                                                                                     <option value="{{ $i }}"
-                                                                                            @if($i == $profile->birth_day) selected @endif>{{ $i }}</option>
+                                                                                            @if($i == old('birth_year', $profile->birth_year)) selected @endif>{{ $i }}</option>
                                                                                 @endfor
                                                                             </select>
                                                                             @if($errors->has('birth_day') || $errors->has('birth_month') || $errors->has('birth_year'))
@@ -145,7 +142,7 @@
                                                                        class="form-control mb-4 @error('profession') is-invalid @enderror"
                                                                        id="profession"
                                                                        placeholder="Business Man"
-                                                                       value="{{ $profile->profession }}">
+                                                                       value="{{ old('profession', $profile->profession) }}">
                                                                 @error('profession')
                                                                 <div class="invalid-feedback">
                                                                     {{ $message }}
@@ -169,9 +166,14 @@
                                             <div class="col-md-11 mx-auto">
                                                 <div class="form-group">
                                                     <label for="aboutBio">Bio</label>
-                                                    <textarea class="form-control" name="bio" id="aboutBio"
+                                                    <textarea class="form-control @error('bio') is-invalid @enderror" name="bio" id="aboutBio"
                                                               placeholder="Tell something interesting about yourself"
-                                                              rows="10">{{ $profile->bio }}</textarea>
+                                                              rows="10">{{ old('bio', $profile->bio) }}</textarea>
+                                                    @error('bio')
+                                                    <div class="invalid-feedback">
+                                                        {{ $message }}
+                                                    </div>
+                                                    @enderror
                                                 </div>
                                             </div>
                                         </div>
@@ -189,26 +191,41 @@
                                                     <div class="col-md-6">
                                                         <div class="form-group">
                                                             <label for="country">Country</label>
-                                                            <input type="text" name="country" class="form-control mb-4"
+                                                            <input type="text" name="country" class="form-control mb-4 @error('country') is-invalid @enderror"
                                                                    id="country" placeholder="Eg: Nepal"
-                                                                   value="{{ $profile->country }}">
+                                                                   value="{{ old('country', $profile->country) }}">
+                                                            @error('country')
+                                                            <div class="invalid-feedback">
+                                                                {{ $message }}
+                                                            </div>
+                                                            @enderror
                                                         </div>
                                                     </div>
                                                     <div class="col-md-6">
                                                         <div class="form-group">
                                                             <label for="address">Address</label>
-                                                            <input type="text" class="form-control mb-4" name="address"
+                                                            <input type="text" class="form-control mb-4 @error('address') is-invalid @enderror" name="address"
                                                                    id="address" placeholder="Address"
-                                                                   value="{{ $profile->address }}">
+                                                                   value="{{ old('address', $profile->address) }}">
+                                                            @error('address')
+                                                            <div class="invalid-feedback">
+                                                                {{ $message }}
+                                                            </div>
+                                                            @enderror
                                                         </div>
                                                     </div>
                                                     <div class="col-md-6">
                                                         <div class="form-group">
                                                             <label for="phone">Phone</label>
-                                                            <input type="text" name="phone" class="form-control mb-4"
+                                                            <input type="text" name="phone" class="form-control mb-4 @error('phone') is-invalid @enderror"
                                                                    id="phone"
                                                                    placeholder="Write your mobile number here"
-                                                                   value="{{ $profile->phone }}">
+                                                                   value="{{ old('phone', $profile->phone) }}">
+                                                            @error('phone')
+                                                            <div class="invalid-feedback">
+                                                                {{ $message }}
+                                                            </div>
+                                                            @enderror
                                                         </div>
                                                     </div>
                                                     <div class="col-md-6">
@@ -222,8 +239,13 @@
                                                     <div class="col-md-6">
                                                         <div class="form-group">
                                                             <label for="website1">Website</label>
-                                                            <input type="text" name="website" class="form-control mb-4"
-                                                                   id="website1" placeholder="Write your website here">
+                                                            <input type="text" name="website" class="form-control mb-4 @error('website') is-invalid @enderror"
+                                                                   id="website1" value="{{ old('website', $profile->website) }}" placeholder="Write your website here">
+                                                            @error('website')
+                                                            <div class="invalid-feedback">
+                                                                {{ $message }}
+                                                            </div>
+                                                            @enderror
                                                         </div>
                                                     </div>
                                                 </div>
@@ -254,11 +276,16 @@
                                                                         x="2" y="9" width="4" height="12"></rect><circle
                                                                         cx="4" cy="4" r="2"></circle></svg></span>
                                                             </div>
-                                                            <input type="text" class="form-control" name="linkedin"
+                                                            <input type="text" class="form-control @error('linkedin') is-invalid @enderror" name="linkedin"
                                                                    placeholder="linkedin profile url"
                                                                    aria-label="Username"
                                                                    aria-describedby="linkedin"
-                                                                   value="{{ $profile->linkedin }}">
+                                                                   value="{{ old('linkedin', $profile->linkedin) }}">
+                                                            @error('linkedin')
+                                                            <div class="invalid-feedback">
+                                                                {{ $message }}
+                                                            </div>
+                                                            @enderror
                                                         </div>
                                                     </div>
 
@@ -273,10 +300,15 @@
                                                                     class="feather feather-twitter"><path
                                                                         d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path></svg></span>
                                                             </div>
-                                                            <input type="text" class="form-control"
+                                                            <input type="text" class="form-control @error('twitter') is-invalid @enderror"
                                                                    placeholder="Twitter profile url" name="twitter"
                                                                    aria-label="Username" aria-describedby="tweet"
-                                                                   value="{{ $profile->twitter }}">
+                                                                   value="{{ old('twitter', $profile->twitter) }}">
+                                                            @error('twitter')
+                                                            <div class="invalid-feedback">
+                                                                {{ $message }}
+                                                            </div>
+                                                            @enderror
                                                         </div>
                                                     </div>
                                                 </div>
@@ -295,11 +327,16 @@
                                                                     class="feather feather-facebook"><path
                                                                         d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg></span>
                                                             </div>
-                                                            <input type="text" class="form-control"
+                                                            <input type="text" class="form-control @error('facebook') is-invalid @enderror"
                                                                    placeholder="Facebook profile/page url"
                                                                    name="facebook"
                                                                    aria-label="Username" aria-describedby="fb"
-                                                                   value="{{ $profile->facebook }}">
+                                                                   value="{{ old('facebook', $profile->facebook) }}">
+                                                            @error('facebook')
+                                                            <div class="invalid-feedback">
+                                                                {{ $message }}
+                                                            </div>
+                                                            @enderror
                                                         </div>
                                                     </div>
 
@@ -319,10 +356,15 @@
                                                             points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02"></polygon>
                                                     </svg></span>
                                                             </div>
-                                                            <input type="text" class="form-control"
+                                                            <input type="text" class="form-control @error('youtube') is-invalid @enderror"
                                                                    placeholder="Youtube channel url" name="youtube"
                                                                    aria-label="Username" aria-describedby="yt"
-                                                                   value="{{ $profile->youtube }}">
+                                                                   value="{{ old('youtube', $profile->youtube) }}">
+                                                            @error('youtube')
+                                                            <div class="invalid-feedback">
+                                                                {{ $message }}
+                                                            </div>
+                                                            @enderror
                                                         </div>
                                                     </div>
 
@@ -366,4 +408,12 @@
     <script src="{{ asset('plugins/dropify/dropify.min.js') }}"></script>
     <script src="{{ asset('plugins/blockui/jquery.blockUI.min.js') }}"></script>
     <script src="{{ asset('assets/js/users/account-settings.js') }}"></script>
+    <script>
+        $(document).ready(function() {
+            var $container = $("html,body");
+            var $scrollTo = $('.is-invalid');
+            $container.animate({scrollTop: $scrollTo.offset().top - 200, scrollLeft: 0}, 500);
+        });
+
+    </script>
 @endpush
