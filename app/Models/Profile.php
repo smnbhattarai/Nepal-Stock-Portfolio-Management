@@ -9,6 +9,13 @@ class Profile extends Model
 {
     use HasFactory;
 
+    protected $fillable = ['slug'];
+
+    public function getRouteKeyName()
+    {
+        return 'slug';
+    }
+
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
@@ -20,7 +27,7 @@ class Profile extends Model
     public function avatar()
     {
         if($this->avatar)
-            return asset('avatar/' . $this->avatar);
+            return asset('storage/' . $this->avatar);
 
         return asset('assets/img/avatar.png');
     }

@@ -40,7 +40,11 @@ class CreateNewUser implements CreatesNewUsers
 
         $user->assignRole('member');
 
-        Profile::create(['user_id' => $user->id, 'name' => $input['name']]);
+        Profile::create([
+            'user_id' => $user->id,
+            'name' => $input['name'],
+            'slug' => rand(1000000, 9999999)
+        ]);
 
         return $user;
     }

@@ -21,6 +21,6 @@ class UsersSeeder extends Seeder
             'password' => Hash::make('password')
         ]);
 
-        Profile::create(['user_id' => $user->id, 'name' => 'Suman Bhattarai']);
+        Profile::create(['user_id' => $user->id, 'name' => 'Suman Bhattarai', 'slug' => rand(100000000, 999999999)]);
     }
 }

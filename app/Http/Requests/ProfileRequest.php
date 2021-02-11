@@ -24,6 +24,7 @@ class ProfileRequest extends FormRequest
     public function rules()
     {
         return [
+            'avatar' => 'nullable|image|max:512',
             'name' => 'required|string|max:190',
             'birth_day' => 'nullable|integer|min:1|max:32',
             'birth_month' => 'nullable|integer|min:1|max:12',

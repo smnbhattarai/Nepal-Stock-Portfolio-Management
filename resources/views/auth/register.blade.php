@@ -125,3 +125,11 @@
         </div>
     </div>
 @endsection
+
+@push('css')
+    <link href="{{ asset('assets/css/authentication/form-2.css') }}" rel="stylesheet" type="text/css" />
+@endpush
+
+@push('js')
+    <script src="{{ asset('assets/js/authentication/form-2.js') }}"></script>
+@endpush

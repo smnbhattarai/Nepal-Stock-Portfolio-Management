@@ -30,6 +30,11 @@
                                                                    data-max-file-size="1M"/>
                                                             <p class="mt-2"><i class="flaticon-cloud-upload mr-1"></i>
                                                                 Upload Picture</p>
+                                                            @error('avatar')
+                                                            <small class="text-danger">
+                                                                {{ $message }}
+                                                            </small>
+                                                            @enderror
                                                         </div>
                                                     </div>
                                                     <div class="col-xl-10 col-lg-12 col-md-8 mt-md-0 mt-4">
@@ -68,54 +73,12 @@
                                                                             <select class="form-control" id="month"
                                                                                     name="birth_month">
                                                                                 <option value="">Month</option>
-                                                                                <option value="1"
-                                                                                        @if(old('birth_month', $profile->birth_month) == 1) selected @endif>
-                                                                                    Jan
-                                                                                </option>
-                                                                                <option value="2"
-                                                                                        @if(old('birth_month', $profile->birth_month) == 2) selected @endif>
-                                                                                    Feb
-                                                                                </option>
-                                                                                <option value="3"
-                                                                                        @if(old('birth_month', $profile->birth_month) == 3) selected @endif>
-                                                                                    Mar
-                                                                                </option>
-                                                                                <option value="4"
-                                                                                        @if(old('birth_month', $profile->birth_month) == 4) selected @endif>
-                                                                                    Apr
-                                                                                </option>
-                                                                                <option value="5"
-                                                                                        @if(old('birth_month', $profile->birth_month) == 5) selected @endif>
-                                                                                    May
-                                                                                </option>
-                                                                                <option value="6"
-                                                                                        @if(old('birth_month', $profile->birth_month) == 6) selected @endif>
-                                                                                    Jun
-                                                                                </option>
-                                                                                <option value="7"
-                                                                                        @if(old('birth_month', $profile->birth_month) == 7) selected @endif>
-                                                                                    Jul
-                                                                                </option>
-                                                                                <option value="8"
-                                                                                        @if(old('birth_month', $profile->birth_month) == 8) selected @endif>
-                                                                                    Aug
-                                                                                </option>
-                                                                                <option value="9"
-                                                                                        @if(old('birth_month', $profile->birth_month) == 9) selected @endif>
-                                                                                    Sep
-                                                                                </option>
-                                                                                <option value="10"
-                                                                                        @if(old('birth_month', $profile->birth_month) == 10) selected @endif>
-                                                                                    Oct
-                                                                                </option>
-                                                                                <option value="11"
-                                                                                        @if(old('birth_month', $profile->birth_month) == 11) selected @endif>
-                                                                                    Nov
-                                                                                </option>
-                                                                                <option value="12"
-                                                                                        @if(old('birth_month', $profile->birth_month) == 12) selected @endif>
-                                                                                    Dec
-                                                                                </option>
+                                                                                @foreach(config('global.months_mapping') as $key => $m)
+                                                                                    <option value="{{ $key }}"
+                                                                                            @if(old('birth_month', $profile->birth_month) == $key) selected @endif>
+                                                                                        {{ $m }}
+                                                                                    </option>
+                                                                                @endforeach
                                                                             </select>
                                                                         </div>
                                                                         <div class="form-group mr-1">
@@ -412,7 +375,10 @@
         $(document).ready(function() {
             var $container = $("html,body");
             var $scrollTo = $('.is-invalid');
-            $container.animate({scrollTop: $scrollTo.offset().top - 200, scrollLeft: 0}, 500);
+            if($scrollTo.length > 0) {
+                $container.animate({scrollTop: $scrollTo.offset().top - 200, scrollLeft: 0}, 500);
+            }
+
         });
 
     </script>

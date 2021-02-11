@@ -5,20 +5,16 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no">
     <title> {{ config("app.name") }} </title>
-    <link rel="icon" type="image/x-icon" href="{{ asset("assets/img/favicon.ico") }}"/>
     <link href="{{ asset("assets/css/loader.css") }}" rel="stylesheet" type="text/css"/>
     <script src="{{ asset("assets/js/loader.js") }}"></script>
 
     <link href="https://fonts.googleapis.com/css?family=Nunito:400,600,700" rel="stylesheet">
     <link href="{{ asset("bootstrap/css/bootstrap.min.css") }}" rel="stylesheet" type="text/css"/>
     <link href="{{ asset("assets/css/plugins.css") }}" rel="stylesheet" type="text/css"/>
-    <link href="{{ asset("plugins/apex/apexcharts.css") }}" rel="stylesheet" type="text/css">
-    <link href="{{ asset("assets/css/dashboard/dash_1.css") }}" rel="stylesheet" type="text/css"/>
-    <link href="{{ asset("assets/css/authentication/form-2.css") }}" rel="stylesheet" type="text/css"/>
     <link rel="stylesheet" type="text/css" href="{{ asset("assets/css/forms/theme-checkbox-radio.css") }}">
     <link rel="stylesheet" type="text/css" href="{{ asset("assets/css/forms/switches.css") }}">
     <link href="{{ asset('assets/css/users/user-profile.css') }}" rel="stylesheet" type="text/css" />
-
+    <link href="{{ asset('plugins/notification/snackbar/snackbar.min.css') }}" rel="stylesheet" type="text/css" />
     @stack('css')
 
 </head>
@@ -76,14 +72,15 @@
     });
 </script>
 <script src="{{ asset("assets/js/custom.js") }}"></script>
-<script src="{{ asset("plugins/apex/apexcharts.min.js") }}"></script>
-<script src="{{ asset("assets/js/dashboard/dash_1.js") }}"></script>
-<script src="{{ asset("assets/js/authentication/form-2.js") }}"></script>
 <script src="{{ asset("assets/js/forms/bootstrap_validation/bs_validation_script.js") }}"></script>
+<script src="{{ asset('plugins/notification/snackbar/snackbar.min.js') }}"></script>
+<script src="{{ asset('assets/js/components/notification/custom-snackbar.js') }}"></script>
 
 <script src="{{ mix('/js/main.js') }}"></script>
 
 @stack('js')
+
+@include('layout.partials.notification')
 
 </body>
 </html>

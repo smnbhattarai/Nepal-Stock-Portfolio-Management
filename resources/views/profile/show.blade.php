@@ -16,7 +16,7 @@
                     <div class="widget-content widget-content-area">
                         <div class="d-flex justify-content-between">
                             <h3 class="">Profile</h3>
-                            <a href="{{ route('profile.edit', auth()->user()->profile->id) }}"
+                            <a href="{{ route('profile.edit', auth()->user()->profile) }}"
                                class="mt-2 edit-profile">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                                      fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
@@ -58,8 +58,8 @@
                                                 <line x1="16" y1="2" x2="16" y2="6"></line>
                                                 <line x1="8" y1="2" x2="8" y2="6"></line>
                                                 <line x1="3" y1="10" x2="21" y2="10"></line>
-                                            </svg>{{ $profile->birth_month }} {{ $profile->birth_day }}
-                                            , {{ $profile->birth_year }}
+                                            </svg>{{ config('global.months_mapping')[$profile->birth_month] }} {{ $profile->birth_day }},
+                                             {{ $profile->birth_year }}
                                         </li>
                                     @endif
                                     @if($profile->address || $profile->country)
@@ -75,7 +75,7 @@
                                     @endif
                                     @if($profile->user->email)
                                         <li class="contacts-block__item">
-                                            <a href="mailto:example@mail.com">
+                                            <a href="mailto:{{ $profile->user->email }}">
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                                                      viewBox="0 0 24 24" fill="none" stroke="currentColor"
                                                      stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
@@ -160,6 +160,7 @@
                                                         <rect x="2" y="9" width="4" height="12"></rect>
                                                         <circle cx="4" cy="4" r="2"></circle>
                                                     </svg>
+                                                    </a>
                                                 </div>
                                             </li>
                                                         @endif
@@ -190,7 +191,6 @@
                     </div>
                 </div>
 
-
             </div>
 
             <div class="col-xl-8 col-lg-6 col-md-7 col-sm-12 layout-top-spacing">
@@ -212,6 +212,9 @@
 
     </div>
 
-
     <!--  END CONTENT AREA  -->
 @endsection
+
+@push('css')
+    <link href="{{ asset('assets/css/users/user-profile.css') }}" rel="stylesheet" type="text/css" />
+@endpush
