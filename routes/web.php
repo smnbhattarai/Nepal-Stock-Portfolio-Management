@@ -12,6 +12,7 @@ Route::group(['middleware' => 'auth'], function() {
 
     Route::get('/dashboard', [HomeController::class, 'dashboard'])->name('dashboard');
     Route::resource('profile', ProfileController::class);
+    Route::resource('portfolio', ProfileController::class);
 
 });
 
