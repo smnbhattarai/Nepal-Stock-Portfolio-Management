@@ -15,6 +15,7 @@
     <link rel="stylesheet" type="text/css" href="{{ asset("assets/css/forms/switches.css") }}">
     <link href="{{ asset('assets/css/users/user-profile.css') }}" rel="stylesheet" type="text/css" />
     <link href="{{ asset('plugins/notification/snackbar/snackbar.min.css') }}" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="{{ asset('plugins/select2/select2.min.css') }}">
     @stack('css')
 
 </head>
@@ -71,10 +72,12 @@
         App.init();
     });
 </script>
+<script src="{{ asset('plugins/highlight/highlight.pack.js') }}"></script>
 <script src="{{ asset("assets/js/custom.js") }}"></script>
 <script src="{{ asset("assets/js/forms/bootstrap_validation/bs_validation_script.js") }}"></script>
 <script src="{{ asset('plugins/notification/snackbar/snackbar.min.js') }}"></script>
 <script src="{{ asset('assets/js/components/notification/custom-snackbar.js') }}"></script>
+<script src="{{ asset('plugins/select2/select2.min.js') }}"></script>
 
 <script src="{{ mix('/js/main.js') }}"></script>
 
