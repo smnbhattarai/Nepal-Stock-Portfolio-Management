@@ -15,6 +15,9 @@ class CreatePortfoliosTable extends Migration
     {
         Schema::create('portfolios', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
+            $table->foreignId('stock_id')->constrained('stocks')->onDelete('cascade');
+            $table->text('description')->nullable();
             $table->timestamps();
         });
     }
