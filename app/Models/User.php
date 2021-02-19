@@ -49,4 +49,12 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         return $this->hasOne(Profile::class);
     }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function portfolios()
+    {
+        return $this->hasMany(Portfolio::class);
+    }
 }

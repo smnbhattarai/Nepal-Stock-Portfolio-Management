@@ -16,6 +16,10 @@
     <link href="{{ asset('assets/css/users/user-profile.css') }}" rel="stylesheet" type="text/css" />
     <link href="{{ asset('plugins/notification/snackbar/snackbar.min.css') }}" rel="stylesheet" type="text/css" />
     <link rel="stylesheet" type="text/css" href="{{ asset('plugins/select2/select2.min.css') }}">
+    <link href="{{ asset('assets/css/tables/table-basic.css') }}" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="{{ asset('plugins/table/datatable/datatables.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('plugins/table/datatable/dt-global_style.css') }}">
+
     @stack('css')
 
 </head>
@@ -78,6 +82,7 @@
 <script src="{{ asset('plugins/notification/snackbar/snackbar.min.js') }}"></script>
 <script src="{{ asset('assets/js/components/notification/custom-snackbar.js') }}"></script>
 <script src="{{ asset('plugins/select2/select2.min.js') }}"></script>
+<script src="{{ asset('plugins/table/datatable/datatables.js') }}"></script>
 
 <script src="{{ mix('/js/main.js') }}"></script>
 

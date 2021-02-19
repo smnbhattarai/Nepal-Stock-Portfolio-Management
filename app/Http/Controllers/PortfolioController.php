@@ -14,7 +14,8 @@ class PortfolioController extends Controller
      */
     public function index()
     {
-        return view('portfolio.index');
+        $portfolios = Portfolio::with('stock')->where('user_id', auth()->id())->get();
+        return view('portfolio.index', compact('portfolios'));
     }
 
     /**
