@@ -28,17 +28,23 @@
 
                         @csrf
 
-                        <select class="placeholder js-states form-control" name="symbol" required>
-                            <option value="">Choose a symbol ...</option>
-                            @foreach($stocks as $stock)
-                                <option value="{{ $stock->id }}" @if($stock->id == old('symbol', $portfolio->stock_id)) selected @endif>
-                                    {{ $stock->symbol }} ({{ $stock->name }})
-                                </option>
-                            @endforeach
-                        </select>
-                        @error('symbol')
-                        <div class="invalid-feedback" style="display: block; margin-top: -20px; margin-bottom: 20px;">{{ $message }}</div>
-                        @enderror
+                        @if($portfolio->exists)
+                            <input class="form-control mb-3" type="text" placeholder="{{ $portfolio->stock->symbol }} ({{ $portfolio->stock->name }})" readonly>
+                            <input type="hidden" name="symbol" value="{{ $portfolio->stock_id }}">
+                        @else
+                            <select class="placeholder js-states form-control" name="symbol" required>
+                                <option value="">Choose a symbol ...</option>
+                                @foreach($stocks as $stock)
+                                    <option value="{{ $stock->id }}" @if($stock->id == old('symbol', $portfolio->stock_id)) selected @endif>
+                                        {{ $stock->symbol }} ({{ $stock->name }})
+                                    </option>
+                                @endforeach
+                            </select>
+                            @error('symbol')
+                            <div class="invalid-feedback" style="display: block; margin-top: -20px; margin-bottom: 20px;">{{ $message }}</div>
+                            @enderror
+                        @endif
+
 
                         <div class="form-group mb-4">
                             <label for="description">Description</label>

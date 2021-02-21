@@ -54,7 +54,14 @@ class PortfolioController extends Controller
      */
     public function edit(Portfolio $portfolio)
     {
-        $stocks = Stock::all(['id', 'symbol', 'name']);
+        $userStocks = auth()->user()->portfolios;
+
+        $stocks = [];
+        foreach ($userStocks as $userStock) {
+            $stocks[] = $userStock->stock_id;
+        }
+
+        $stocks = Stock::whereNotIn('id', $stocks)->get(['id', 'symbol', 'name']);
         return view('portfolio.form', compact('portfolio', 'stocks'));
     }
 
@@ -67,7 +74,7 @@ class PortfolioController extends Controller
      */
     public function update(PortfolioRequest $request, Portfolio $portfolio)
     {
-        //
+        return $this->save($request, $portfolio);
     }
 
     public function save($request, $portfolio = null)
@@ -76,7 +83,7 @@ class PortfolioController extends Controller
             $message = "Portfolio updated Successfully.";
         } else {
             $portfolio = new Portfolio();
-            $message = "Portfolio created Successfully.";
+            $message = "Portfolio added Successfully.";
         }
 
         $portfolio->user_id = auth()->id();
@@ -97,6 +104,7 @@ class PortfolioController extends Controller
      */
     public function destroy(Portfolio $portfolio)
     {
-        //
+        $portfolio->delete();
+        return redirect()->route('portfolio.index')->withSuccess('Portfolio deleted!');
     }
 }

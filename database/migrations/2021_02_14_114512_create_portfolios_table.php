@@ -19,6 +19,9 @@ class CreatePortfoliosTable extends Migration
             $table->foreignId('stock_id')->constrained('stocks')->onDelete('cascade');
             $table->text('description')->nullable();
             $table->timestamps();
+
+            $table->unique(['user_id', 'stock_id']);
+
         });
     }
 

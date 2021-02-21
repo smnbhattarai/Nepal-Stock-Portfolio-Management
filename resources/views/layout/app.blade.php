@@ -4,21 +4,26 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no">
-    <title> {{ config("app.name") }} </title>
-    <link href="{{ asset("assets/css/loader.css") }}" rel="stylesheet" type="text/css"/>
-    <script src="{{ asset("assets/js/loader.js") }}"></script>
 
+    <title> {{ config("app.name") }} </title>
+
+    <link href="{{ asset("assets/css/loader.css") }}" rel="stylesheet" type="text/css"/>
     <link href="https://fonts.googleapis.com/css?family=Nunito:400,600,700" rel="stylesheet">
     <link href="{{ asset("bootstrap/css/bootstrap.min.css") }}" rel="stylesheet" type="text/css"/>
     <link href="{{ asset("assets/css/plugins.css") }}" rel="stylesheet" type="text/css"/>
-    <link rel="stylesheet" type="text/css" href="{{ asset("assets/css/forms/theme-checkbox-radio.css") }}">
-    <link rel="stylesheet" type="text/css" href="{{ asset("assets/css/forms/switches.css") }}">
+    <link href="{{ asset("assets/css/forms/theme-checkbox-radio.css") }}" rel="stylesheet" type="text/css">
+    <link href="{{ asset("assets/css/forms/switches.css") }}" rel="stylesheet" type="text/css">
     <link href="{{ asset('assets/css/users/user-profile.css') }}" rel="stylesheet" type="text/css" />
     <link href="{{ asset('plugins/notification/snackbar/snackbar.min.css') }}" rel="stylesheet" type="text/css" />
-    <link rel="stylesheet" type="text/css" href="{{ asset('plugins/select2/select2.min.css') }}">
+    <link href="{{ asset('plugins/select2/select2.min.css') }}" rel="stylesheet" type="text/css">
     <link href="{{ asset('assets/css/tables/table-basic.css') }}" rel="stylesheet" type="text/css" />
-    <link rel="stylesheet" type="text/css" href="{{ asset('plugins/table/datatable/datatables.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('plugins/table/datatable/dt-global_style.css') }}">
+    <link href="{{ asset('plugins/table/datatable/datatables.css') }}" rel="stylesheet" type="text/css">
+    <link href="{{ asset('plugins/table/datatable/dt-global_style.css') }}" rel="stylesheet" type="text/css">
+    <link href="{{ asset('assets/css/scrollspyNav.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('plugins/animate/animate.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('plugins/sweetalerts/sweetalert2.min.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('plugins/sweetalerts/sweetalert.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('assets/css/components/custom-sweetalert.css') }}" rel="stylesheet" type="text/css" />
 
     @stack('css')
 
@@ -65,11 +70,14 @@
 
 @endauth
 
-
+<script src="{{ asset("assets/js/loader.js") }}"></script>
 <script src="{{ asset("assets/js/libs/jquery-3.1.1.min.js") }}"></script>
 <script src="{{ asset("bootstrap/js/popper.min.js") }}"></script>
 <script src="{{ asset("bootstrap/js/bootstrap.min.js") }}"></script>
 <script src="{{ asset("plugins/perfect-scrollbar/perfect-scrollbar.min.js") }}"></script>
+<script src="{{ asset('plugins/sweetalerts/promise-polyfill.js') }}"></script>
+<script src="{{ asset('plugins/sweetalerts/sweetalert2.min.js') }}"></script>
+<script src="{{ asset('plugins/sweetalerts/custom-sweetalert.js') }}"></script>
 <script src="{{ asset("assets/js/app.js") }}"></script>
 <script>
     $(document).ready(function () {
