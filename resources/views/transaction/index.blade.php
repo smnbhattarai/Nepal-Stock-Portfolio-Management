@@ -1,5 +1,5 @@
 @extends('layout.app', [
-    'breadcrum' => [route('portfolio.index') => 'Portfolios']
+    'breadcrum' => [route('transaction.index') => 'Transactions']
     ])
 
 @section('content')
@@ -14,20 +14,30 @@
                         <table id="zero-config" class="table table-hover" style="width: 100%">
                             <thead>
                             <tr>
-                                <th>Symbol</th>
-                                <th>Name</th>
-                                <th>Description</th>
+                                <th>Type</th>
+                                <th>Stock</th>
+                                <th>Quantity</th>
+                                <th>Price</th>
+                                <th>Date</th>
+                                <th>Commission</th>
                                 <th class="no-content"></th>
                             </tr>
                             </thead>
                             <tbody>
-                            @foreach($portfolios as $portfolio)
+                            @foreach($transactions as $transaction)
                             <tr>
-                                <td>{{ $portfolio->stock->symbol }}</td>
-                                <td>{{ $portfolio->stock->name }}</td>
-                                <td>{{ $portfolio->description }}</td>
+                                <td>
+                                    <span class="badge badge-{{ $transaction->type == 1 ? 'info' : 'secondary' }}">
+                                        {{ $transaction->type == 1 ? 'Buy' : 'Sell' }}
+                                    </span>
+                                </td>
+                                <td><span class="bs-tooltip" title="{{ $transaction->stock->name }}" data-placement="right">{{ $transaction->stock->symbol }}</span></td>
+                                <td>{{ $transaction->quantity }}</td>
+                                <td>Rs. {{ $transaction->price }}</td>
+                                <td>{{ $transaction->date }}</td>
+                                <td>{{ $transaction->type == 2 ? $transaction->commission : 'N/A' }}</td>
                                 <td class="float-right">
-                                    <a href="{{ route('portfolio.edit', $portfolio) }}" data-toggle="tooltip" data-placement="top"
+                                    <a href="{{ route('transaction.edit', $transaction) }}" data-toggle="tooltip" data-placement="top"
                                        title="Edit">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                                              viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
@@ -37,7 +47,7 @@
                                         </svg>
                                     </a>
 
-                                    <form action="{{ route('portfolio.destroy', $portfolio) }}" class="del-class" method="post" style="display: inline-block;">
+                                    <form action="{{ route('transaction.destroy', $transaction) }}" class="del-class" method="post" style="display: inline-block;">
                                         @method('delete')
                                         @csrf
                                         <button href="javascript:void(0);" data-toggle="tooltip" data-placement="top"
@@ -60,9 +70,12 @@
                             </tbody>
                             <tfoot>
                             <tr>
-                                <th>Symbol</th>
-                                <th>Name</th>
-                                <th>Description</th>
+                                <th>Type</th>
+                                <th>Stock</th>
+                                <th>Quantity</th>
+                                <th>Price</th>
+                                <th>Date</th>
+                                <th>Commission</th>
                                 <th class="no-content"></th>
                             </tr>
                             </tfoot>
@@ -104,7 +117,7 @@
             e.preventDefault();
             swal({
                 title: 'Are you sure?',
-                text: "You won't be able to revert this! All added transaction for this portfolio will be deleted permanently.",
+                text: "You won't be able to revert this! Transaction will be deleted permanently.",
                 type: 'warning',
                 showCancelButton: true,
                 confirmButtonText: 'Delete',

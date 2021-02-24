@@ -14,7 +14,14 @@
                     <div class="widget-header">
                         <div class="row">
                             <div class="col-xl-12 col-md-12 col-sm-12 col-12">
-                                <h4>Add New Portfolio</h4>
+                                <h4>
+                                    @if($portfolio->exists)
+                                        Edit Portfolio ({{ $portfolio->stock->symbol }})
+                                    @else
+                                        Add New Portfolio
+                                    @endif
+
+                                </h4>
                             </div>
                         </div>
                     </div>

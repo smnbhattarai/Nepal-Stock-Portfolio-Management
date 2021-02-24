@@ -1,5 +1,5 @@
 @extends('layout.app', [
-    'breadcrum' => [route('portfolio.create') => 'Create Portfolios']
+    'breadcrum' => [route('transaction.create') => 'Create transactions']
     ])
 
 @section('content')
@@ -14,42 +14,87 @@
                     <div class="widget-header">
                         <div class="row">
                             <div class="col-xl-12 col-md-12 col-sm-12 col-12">
-                                <h4>Add New Portfolio</h4>
+                                <h4>
+                                    @if($transaction->exists)
+                                        Edit Transaction ({{ $transaction->stock->symbol }})
+                                    @else
+                                        Add New transaction
+                                    @endif
+                                </h4>
                             </div>
                         </div>
                     </div>
                     <div class="widget-content widget-content-area">
-                        @if($portfolio->exists)
-                            <form action="{{ route('portfolio.update', $portfolio) }}" method="post">
+                        @if($transaction->exists)
+                            <form action="{{ route('transaction.update', $transaction) }}" method="post">
                             @method('PUT')
                         @else
-                            <form action="{{ route('portfolio.store') }}" method="post">
+                            <form action="{{ route('transaction.store') }}" method="post">
                         @endif
 
                         @csrf
 
-                        @if($portfolio->exists)
-                            <input class="form-control mb-3" type="text" placeholder="{{ $portfolio->stock->symbol }} ({{ $portfolio->stock->name }})" readonly>
-                            <input type="hidden" name="symbol" value="{{ $portfolio->stock_id }}">
+
+                            @if($transaction->exists)
+                                <input class="form-control mb-3" type="text" placeholder="{{ $transaction->type == 1 ? 'Buy' : 'Sell' }}" readonly>
+                                <input type="hidden" name="stock_id" value="{{ $transaction->type }}">
+                            @else
+                                <label for="type">Choose buy/sell</label>
+                                <select class="js-states type form-control @error('type') is-invalid @enderror" name="type" id="type">
+                                    <option value="">Choose type ...</option>
+                                    <option value="1" @if(1 == old('type', $transaction->type)) selected @endif>Buy</option>
+                                    <option value="2" @if(2 == old('type', $transaction->type)) selected @endif>Sell</option>
+                                </select>
+                                @error('type')
+                                <div class="invalid-feedback" style="display: block; margin-top: -20px; margin-bottom: 20px;">{{ $message }}</div>
+                                @enderror
+                            @endif
+
+
+
+                        @if($transaction->exists)
+                            <input class="form-control mb-3" type="text" placeholder="{{ $transaction->stock->symbol }} ({{ $transaction->stock->name }})" readonly>
+                            <input type="hidden" name="stock_id" value="{{ $transaction->stock_id }}">
                         @else
-                            <select class="placeholder js-states form-control" name="symbol" required>
+                            <label for="stock">Choose stock</label>
+                            <select class="stock js-states form-control" name="stock" id="stock">
                                 <option value="">Choose a symbol ...</option>
-                                @foreach($stocks as $stock)
-                                    <option value="{{ $stock->id }}" @if($stock->id == old('symbol', $portfolio->stock_id)) selected @endif>
-                                        {{ $stock->symbol }} ({{ $stock->name }})
+                                @foreach($portfolios as $portfolio)
+                                    <option value="{{ $portfolio->stock_id }}" @if($portfolio->stock_id == old('stock', $transaction->stock_id)) selected @endif>
+                                        {{ $portfolio->stock->symbol }} ({{ $portfolio->stock->name }})
                                     </option>
                                 @endforeach
                             </select>
-                            @error('symbol')
+                            @error('stock')
                             <div class="invalid-feedback" style="display: block; margin-top: -20px; margin-bottom: 20px;">{{ $message }}</div>
                             @enderror
                         @endif
 
+                        <div class="form-group mb-4">
+                            <label for="quantity">Quantity</label>
+                            <input type="number" class="form-control @error('quantity') is-invalid @enderror" value="{{ old('quantity', $transaction->quantity) }}" id="quantity" name="quantity" placeholder="Eg: 175">
+                            @error('quantity')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
+                        </div>
 
                         <div class="form-group mb-4">
-                            <label for="description">Description</label>
-                            <input type="text" class="form-control @error('description') is-invalid @enderror" value="{{ old('description', $portfolio->description) }}" id="description" name="description" placeholder="Add some details if you like" maxlength="180">
-                            @error('description')
+                            <label for="price">Price</label>
+                            <input type="text" class="form-control @error('price') is-invalid @enderror" value="{{ old('price', $transaction->price) }}" id="price" name="price" placeholder="Eg: 500">
+                            @error('price')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
+                        </div>
+
+                        <div class="form-group mb-4">
+                            <label for="date">Buy/Sell Date</label>
+                            <input id="date" name="date" value="{{ old('date', $transaction->date) }}" class="form-control flatpickr flatpickr-input" type="text" placeholder="Select buy/sell date">
+                        </div>
+
+                        <div class="form-group mb-4">
+                            <label for="commission">Commission</label>
+                            <input type="text" class="form-control @error('commission') is-invalid @enderror" value="{{ old('commission', $transaction->commission) }}" id="commission" name="commission" placeholder="Broker commission amount">
+                            @error('commission')
                             <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
                         </div>
@@ -71,14 +116,19 @@
 @push('js')
     <script>
         $(document).ready(function() {
-            $(".placeholder").select2({
+
+            $(".stock").select2({
                 placeholder: "Choose a Symbol",
                 allowClear: true
             });
-            $('input#description').maxlength({
-                separator: ' of ',
-                preText: 'You have ',
-                postText: ' chars remaining.'
+            $(".type").select2({
+                placeholder: "Choose Buy/Sell",
+                allowClear: true
+            });
+
+            $('#date').flatpickr({
+                dateFormat: "Y-m-d",
+                maxDate: "{{ date('Y-m-d') }}"
             });
         });
     </script>

@@ -24,6 +24,9 @@
     <link href="{{ asset('plugins/sweetalerts/sweetalert2.min.css') }}" rel="stylesheet" type="text/css" />
     <link href="{{ asset('plugins/sweetalerts/sweetalert.css') }}" rel="stylesheet" type="text/css" />
     <link href="{{ asset('assets/css/components/custom-sweetalert.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('plugins/flatpickr/flatpickr.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('plugins/flatpickr/custom-flatpickr.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('plugins/bootstrap-select/bootstrap-select.min.css') }}" rel="stylesheet" type="text/css" />
 
     @stack('css')
 
@@ -80,6 +83,9 @@
 <script src="{{ asset('plugins/sweetalerts/custom-sweetalert.js') }}"></script>
 <script src="{{ asset('plugins/bootstrap-maxlength/bootstrap-maxlength.js') }}"></script>
 <script src="{{ asset('plugins/bootstrap-maxlength/custom-bs-maxlength.js') }}"></script>
+<script src="{{ asset('plugins/flatpickr/flatpickr.js') }}"></script>
+<script src="{{ asset('plugins/flatpickr/custom-flatpickr.js') }}"></script>
+<script src="{{ asset('plugins/bootstrap-select/bootstrap-select.min.js') }}"></script>
 <script src="{{ asset("assets/js/app.js") }}"></script>
 <script>
     $(document).ready(function () {

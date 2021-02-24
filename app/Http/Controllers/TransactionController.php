@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\TransactionRequest;
+use App\Models\Portfolio;
 use App\Models\Transaction;
 use Illuminate\Http\Request;
 
@@ -14,7 +16,8 @@ class TransactionController extends Controller
      */
     public function index()
     {
-        //
+        $transactions = Transaction::with('stock')->where('user_id', auth()->id())->orderBy('id', 'desc')->get();
+        return view('transaction.index', compact('transactions'));
     }
 
     /**
@@ -24,7 +27,7 @@ class TransactionController extends Controller
      */
     public function create()
     {
-        //
+        return $this->edit(new Transaction());
     }
 
     /**
@@ -33,9 +36,9 @@ class TransactionController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(TransactionRequest $request)
     {
-        //
+        return $this->save($request);
     }
 
     /**
@@ -57,7 +60,8 @@ class TransactionController extends Controller
      */
     public function edit(Transaction $transaction)
     {
-        //
+        $portfolios = Portfolio::with('stock')->where('user_id', auth()->id())->get();
+        return view('transaction.form', compact('transaction', 'portfolios'));
     }
 
     /**
@@ -67,9 +71,32 @@ class TransactionController extends Controller
      * @param  \App\Models\Transaction  $transaction
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Transaction $transaction)
+    public function update(TransactionRequest $request, Transaction $transaction)
     {
-        //
+        return $this->save($request, $transaction);
+    }
+
+    public function save($request, $transaction = null)
+    {
+        if ($transaction) {
+            $message = "Transaction updated Successfully.";
+        } else {
+            $transaction = new Transaction();
+            $transaction->stock_id = $request->stock;
+            $transaction->type = $request->type;
+            $message = "Transaction added Successfully.";
+        }
+
+        $transaction->user_id = auth()->id();
+        $transaction->quantity = $request->quantity;
+        $transaction->price = $request->price;
+        $transaction->date = $request->date;
+        $transaction->commission = $request->commission;
+
+        $transaction->save();
+
+        return redirect()->route('transaction.index')->withSuccess($message);
+
     }
 
     /**
@@ -80,6 +107,7 @@ class TransactionController extends Controller
      */
     public function destroy(Transaction $transaction)
     {
-        //
+        $transaction->delete();
+        return redirect()->route('transaction.index')->withSuccess('Transaction deleted!');
     }
 }

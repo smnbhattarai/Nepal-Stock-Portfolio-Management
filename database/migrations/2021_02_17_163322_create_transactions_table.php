@@ -18,7 +18,7 @@ class CreateTransactionsTable extends Migration
             $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
             $table->foreignId('stock_id')->constrained('stocks')->onDelete('cascade');
             $table->unsignedTinyInteger('type');
-            $table->decimal('quantity', 12, 2)->nullable();
+            $table->unsignedBigInteger('quantity')->nullable();
             $table->decimal('price', 12, 2)->nullable();
             $table->date('date')->nullable();
             $table->decimal('commission', 12, 2)->nullable();
