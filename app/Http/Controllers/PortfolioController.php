@@ -54,6 +54,8 @@ class PortfolioController extends Controller
      */
     public function edit(Portfolio $portfolio)
     {
+        if($portfolio->exists) $this->authorize('update', $portfolio);
+
         $userStocks = auth()->user()->portfolios;
 
         $stocks = [];
@@ -74,6 +76,8 @@ class PortfolioController extends Controller
      */
     public function update(PortfolioRequest $request, Portfolio $portfolio)
     {
+        $this->authorize('update', $portfolio);
+
         return $this->save($request, $portfolio);
     }
 
@@ -104,6 +108,8 @@ class PortfolioController extends Controller
      */
     public function destroy(Portfolio $portfolio)
     {
+        $this->authorize('delete', $portfolio);
+
         $portfolio->delete();
         return redirect()->route('portfolio.index')->withSuccess('Portfolio deleted!');
     }

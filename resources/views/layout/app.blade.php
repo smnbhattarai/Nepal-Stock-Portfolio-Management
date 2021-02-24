@@ -78,6 +78,8 @@
 <script src="{{ asset('plugins/sweetalerts/promise-polyfill.js') }}"></script>
 <script src="{{ asset('plugins/sweetalerts/sweetalert2.min.js') }}"></script>
 <script src="{{ asset('plugins/sweetalerts/custom-sweetalert.js') }}"></script>
+<script src="{{ asset('plugins/bootstrap-maxlength/bootstrap-maxlength.js') }}"></script>
+<script src="{{ asset('plugins/bootstrap-maxlength/custom-bs-maxlength.js') }}"></script>
 <script src="{{ asset("assets/js/app.js") }}"></script>
 <script>
     $(document).ready(function () {

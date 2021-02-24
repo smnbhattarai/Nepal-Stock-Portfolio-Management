@@ -15,11 +15,12 @@ class CreateTransactionsTable extends Migration
     {
         Schema::create('transactions', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
             $table->foreignId('stock_id')->constrained('stocks')->onDelete('cascade');
             $table->unsignedTinyInteger('type');
-            $table->decimal('quantity', 12, 2);
-            $table->decimal('price', 12, 2);
-            $table->date('date');
+            $table->decimal('quantity', 12, 2)->nullable();
+            $table->decimal('price', 12, 2)->nullable();
+            $table->date('date')->nullable();
             $table->decimal('commission', 12, 2)->nullable();
             $table->timestamps();
         });
