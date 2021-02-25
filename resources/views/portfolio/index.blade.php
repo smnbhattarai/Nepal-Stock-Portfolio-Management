@@ -96,8 +96,8 @@
                 sLengthMenu: "Results :  _MENU_",
             },
             stripeClasses: [],
-            lengthMenu: [7, 10, 20, 50],
-            pageLength: 7,
+            lengthMenu: [10, 20, 30, 50],
+            pageLength: 10,
         });
 
         $('.del-class').on('submit', function (e) {

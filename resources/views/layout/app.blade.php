@@ -83,8 +83,6 @@
 <script src="{{ asset('plugins/sweetalerts/custom-sweetalert.js') }}"></script>
 <script src="{{ asset('plugins/bootstrap-maxlength/bootstrap-maxlength.js') }}"></script>
 <script src="{{ asset('plugins/bootstrap-maxlength/custom-bs-maxlength.js') }}"></script>
-<script src="{{ asset('plugins/flatpickr/flatpickr.js') }}"></script>
-<script src="{{ asset('plugins/flatpickr/custom-flatpickr.js') }}"></script>
 <script src="{{ asset('plugins/bootstrap-select/bootstrap-select.min.js') }}"></script>
 <script src="{{ asset("assets/js/app.js") }}"></script>
 <script>
@@ -92,7 +90,6 @@
         App.init();
     });
 </script>
-<script src="{{ asset('plugins/highlight/highlight.pack.js') }}"></script>
 <script src="{{ asset("assets/js/custom.js") }}"></script>
 <script src="{{ asset("assets/js/forms/bootstrap_validation/bs_validation_script.js") }}"></script>
 <script src="{{ asset('plugins/notification/snackbar/snackbar.min.js') }}"></script>
