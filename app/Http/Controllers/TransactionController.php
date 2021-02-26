@@ -46,6 +46,8 @@ class TransactionController extends Controller
      */
     public function create()
     {
+        if(!auth()->user()->portfolios()->count()) return redirect()->route('portfolio.create')->withInfo("Please add portfolio first.");
+
         return $this->edit(new Transaction());
     }
 
@@ -114,7 +116,10 @@ class TransactionController extends Controller
 
         $transaction->save();
 
-        return redirect()->route('transaction.index')->withSuccess($message);
+        $redirect = 'transaction.buy';
+        if($transaction->type == 2) $redirect = 'transaction.sell';
+
+        return redirect()->route($redirect)->withSuccess($message);
 
     }
 

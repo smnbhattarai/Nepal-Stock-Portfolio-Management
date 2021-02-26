@@ -46,10 +46,10 @@
                 </a>
                 <ul class="collapse submenu list-unstyled @if(request()->is('transaction*')) show @endif" id="transactions" data-parent="#transactions">
                     <li class="@if(request()->routeIs('transaction.buy')) active @endif">
-                        <a href="{{ route('transaction.buy') }}">Buy </a>
+                        <a href="{{ route('transaction.buy') }}">Your Buys </a>
                     </li>
                     <li class="@if(request()->routeIs('transaction.sell')) active @endif">
-                        <a href="{{ route('transaction.sell') }}">Sell </a>
+                        <a href="{{ route('transaction.sell') }}">Your Sells </a>
                     </li>
                     <li class="@if(request()->routeIs('transaction.create')) active @endif">
                         <a href="{{ route('transaction.create') }}"> Add Transaction </a>

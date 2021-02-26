@@ -106,6 +106,54 @@
                 </div>
             </div>
 
+            <div id="fs2Placeholder" class="col-lg-6 layout-spacing">
+                <div class="statbox widget box box-shadow">
+                    <div class="widget-header">
+                        <div class="row">
+                            <div class="col-xl-12 col-md-12 col-sm-12 col-12">
+                                <h4>
+                                    Stock Broker Commission
+                                </h4>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="widget-content widget-content-area">
+                        <div class="table-responsive">
+                            <table class="table table-bordered">
+                                <thead>
+                                <tr>
+                                    <th>Transaction Amount (Rs)</th>
+                                    <th>Broker Commission (%)</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <td>Upto 50,000</td>
+                                    <td>0.4</td>
+                                </tr>
+                                <tr>
+                                    <td>50,000 - 5,00,000</td>
+                                    <td>0.37</td>
+                                </tr>
+                                <tr>
+                                    <td>5,00,000 to 20 lakhs</td>
+                                    <td>0.34</td>
+                                </tr>
+                                <tr>
+                                    <td>20 lakhs to 1 Crore</td>
+                                    <td>0.3</td>
+                                </tr>
+                                <tr>
+                                    <td>Above 1 Crore</td>
+                                    <td>0.27</td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
         </div>
 
     </div>
