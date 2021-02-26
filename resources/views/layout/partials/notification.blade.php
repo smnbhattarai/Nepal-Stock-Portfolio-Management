@@ -9,7 +9,6 @@
             duration: 5000,
         });
         @endif
-
         @if (session('info'))
         Snackbar.show({
             text: '{{ session('info') }}',
@@ -19,7 +18,6 @@
             duration: 5000,
         });
         @endif
-
         @if (session('success'))
         Snackbar.show({
             text: '{{ session('success') }}',
@@ -29,7 +27,6 @@
             duration: 5000,
         });
         @endif
-
         @if (session('warning'))
         Snackbar.show({
             text: '{{ session('warning') }}',
@@ -39,7 +36,6 @@
             duration: 5000,
         });
         @endif
-
         @if (session('danger'))
         Snackbar.show({
             text: '{{ session('danger') }}',
@@ -49,7 +45,6 @@
             duration: 5000,
         });
         @endif
-
         @if (session('dark'))
         Snackbar.show({
             text: '{{ session('dark') }}',

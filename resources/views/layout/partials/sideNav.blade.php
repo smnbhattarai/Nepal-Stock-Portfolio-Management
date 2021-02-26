@@ -45,8 +45,11 @@
                     </div>
                 </a>
                 <ul class="collapse submenu list-unstyled @if(request()->is('transaction*')) show @endif" id="transactions" data-parent="#transactions">
-                    <li class="@if(request()->routeIs('transaction.index')) active @endif">
-                        <a href="{{ route('transaction.index') }}"> Your Transactions </a>
+                    <li class="@if(request()->routeIs('transaction.buy')) active @endif">
+                        <a href="{{ route('transaction.buy') }}">Buy </a>
+                    </li>
+                    <li class="@if(request()->routeIs('transaction.sell')) active @endif">
+                        <a href="{{ route('transaction.sell') }}">Sell </a>
                     </li>
                     <li class="@if(request()->routeIs('transaction.create')) active @endif">
                         <a href="{{ route('transaction.create') }}"> Add Transaction </a>

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AjaxController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\PortfolioController;
@@ -15,7 +16,13 @@ Route::group(['middleware' => 'auth'], function() {
     Route::get('/dashboard', [HomeController::class, 'dashboard'])->name('dashboard');
     Route::resource('profile', ProfileController::class);
     Route::resource('portfolio', PortfolioController::class);
-    Route::resource('transaction', TransactionController::class);
+    Route::get('transaction/buy', [TransactionController::class, 'buy'])->name('transaction.buy');
+    Route::get('transaction/sell', [TransactionController::class, 'sell'])->name('transaction.sell');
+    Route::resource('transaction', TransactionController::class)->except(['index', 'show']);
+
+    Route::name('ajax.')->prefix('ajax')->group(function() {
+        Route::post('stock-remaining', [AjaxController::class, 'getUsersRemainingStock'])->name('stock.remaining');
+    });
 
 });
 

@@ -14,10 +14,29 @@ class TransactionController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function buy()
     {
-        $transactions = Transaction::with('stock')->where('user_id', auth()->id())->orderBy('id', 'desc')->get();
-        return view('transaction.index', compact('transactions'));
+        $transactions = Transaction::with('stock')
+            ->where('user_id', auth()->id())
+            ->where('type', 1)
+            ->orderBy('id', 'desc')
+            ->get();
+        return view('transaction.buy', compact('transactions'));
+    }
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function sell()
+    {
+        $transactions = Transaction::with('stock')
+            ->where('user_id', auth()->id())
+            ->where('type', 2)
+            ->orderBy('id', 'desc')
+            ->get();
+        return view('transaction.sell', compact('transactions'));
     }
 
     /**

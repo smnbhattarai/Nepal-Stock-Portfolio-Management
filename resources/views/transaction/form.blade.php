@@ -79,7 +79,7 @@
                         </div>
 
                         <div class="form-group mb-4">
-                            <label for="price">Price</label>
+                            <label for="price">Total Price</label>
                             <input type="text" class="form-control @error('price') is-invalid @enderror" value="{{ old('price', $transaction->price) }}" id="price" name="price" placeholder="Eg: 500">
                             @error('price')
                             <div class="invalid-feedback">{{ $message }}</div>
@@ -91,7 +91,7 @@
                             <input id="date" name="date" value="{{ old('date', $transaction->date) }}" class="form-control flatpickr flatpickr-input" type="text" placeholder="Select buy/sell date">
                         </div>
 
-                        <div class="form-group mb-4">
+                        <div class="form-group mb-4 commission">
                             <label for="commission">Commission</label>
                             <input type="text" class="form-control @error('commission') is-invalid @enderror" value="{{ old('commission', $transaction->commission) }}" id="commission" name="commission" placeholder="Broker commission amount">
                             @error('commission')
@@ -114,6 +114,9 @@
 @endsection
 
 @push('js')
+    <script src="{{ asset('plugins/flatpickr/flatpickr.js') }}"></script>
+    <script src="{{ asset('plugins/flatpickr/custom-flatpickr.js') }}"></script>
+
     <script>
         $(document).ready(function() {
 
@@ -121,15 +124,50 @@
                 placeholder: "Choose a Symbol",
                 allowClear: true
             });
+
             $(".type").select2({
                 placeholder: "Choose Buy/Sell",
-                allowClear: true
+                allowClear: true,
             });
 
             $('#date').flatpickr({
                 dateFormat: "Y-m-d",
                 maxDate: "{{ date('Y-m-d') }}"
             });
+
+            $('#type').on('select2:select', function (e) {
+                var data = e.params.data;
+                var id = parseInt(data.id);
+                var commissionSel = $(".commission");
+                if(id === 1) {
+                    commissionSel.hide(300);
+                    commissionSel.val();
+                } else {
+                    commissionSel.show(300);
+                }
+            });
+
+            $('#stock').on('select2:select', function (e) {
+                var data = e.params.data;
+                var stock_id = parseInt(data.id);
+                var buySell = $('#type').val() === '' ? null : parseInt($('#type').val());
+                if(buySell !== null && buySell === 2) {
+                    $.post("{{ route('ajax.stock.remaining') }}", { stock_id: stock_id })
+                    .done(function(res) {
+                        $("#quantity").val(res.data);
+                    })
+                    .fail(function(res) {
+
+                    });
+                }
+
+            });
+
         });
     </script>
+@endpush
+
+@push('css')
+    <link href="{{ asset('plugins/flatpickr/flatpickr.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('plugins/flatpickr/custom-flatpickr.css') }}" rel="stylesheet" type="text/css" />
 @endpush

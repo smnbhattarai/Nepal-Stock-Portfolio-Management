@@ -1,5 +1,5 @@
 @extends('layout.app', [
-    'breadcrum' => [route('transaction.index') => 'Transactions']
+    'breadcrum' => [route('transaction.sell') => 'Sell']
     ])
 
 @section('content')
