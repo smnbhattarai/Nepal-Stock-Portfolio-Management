@@ -27,6 +27,8 @@
     <link href="{{ asset('assets/css/components/custom-sweetalert.css') }}" rel="stylesheet" type="text/css" />
     <link href="{{ asset('plugins/bootstrap-select/bootstrap-select.min.css') }}" rel="stylesheet" type="text/css" />
 
+    <script src="https://www.gstatic.com/charts/loader.js"></script>
+
     @stack('css')
 
 </head>
@@ -83,17 +85,12 @@
 <script src="{{ asset('plugins/bootstrap-maxlength/bootstrap-maxlength.js') }}"></script>
 <script src="{{ asset('plugins/bootstrap-maxlength/custom-bs-maxlength.js') }}"></script>
 <script src="{{ asset('plugins/bootstrap-select/bootstrap-select.min.js') }}"></script>
-<script src="{{ asset("assets/js/app.js") }}"></script>
+<script src="{{ asset("js/topbar.min.js") }}"></script>
 <script>
-    $.ajaxSetup({
-        headers: {
-            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-        }
-    });
-    $(document).ready(function () {
-        App.init();
-    });
+
+
 </script>
+<script src="{{ asset("assets/js/app.js") }}"></script>
 <script src="{{ asset("assets/js/custom.js") }}"></script>
 <script src="{{ asset("assets/js/forms/bootstrap_validation/bs_validation_script.js") }}"></script>
 <script src="{{ asset('plugins/notification/snackbar/snackbar.min.js') }}"></script>

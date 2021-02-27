@@ -29,12 +29,14 @@ if (togglePasswordConfirmation) {
     });
 }
 
-let agree = document.getElementById("agreeTerms");
-agree.addEventListener('change', function() {
-    let register = document.getElementById("registerBtn");
-    if(agree.checked) {
-        register.removeAttribute("disabled");
-    } else {
-        register.setAttribute("disabled", "disabled");
-    }
-});
+const agree = document.getElementById("agreeTerms");
+if(agree !== null) {
+    agree.addEventListener('change', function() {
+        let register = document.getElementById("registerBtn");
+        if(agree.checked) {
+            register.removeAttribute("disabled");
+        } else {
+            register.setAttribute("disabled", "disabled");
+        }
+    });
+}

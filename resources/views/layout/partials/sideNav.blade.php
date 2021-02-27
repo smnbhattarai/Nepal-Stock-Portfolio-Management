@@ -38,7 +38,7 @@
                 <a href="#transactions" data-toggle="collapse" @if(request()->is('transaction*')) data-active="true" @endif class="dropdown-toggle">
                     <div class="">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-trending-up"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"></polyline><polyline points="17 6 23 6 23 12"></polyline></svg>
-                        <span>Transactions</span>
+                        <span>Buy/Sell</span>
                     </div>
                     <div>
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"></polyline></svg>
@@ -52,7 +52,7 @@
                         <a href="{{ route('transaction.sell') }}">Your Sells </a>
                     </li>
                     <li class="@if(request()->routeIs('transaction.create')) active @endif">
-                        <a href="{{ route('transaction.create') }}"> Add Transaction </a>
+                        <a href="{{ route('transaction.create') }}"> Add Buy/Sell </a>
                     </li>
                 </ul>
             </li>
