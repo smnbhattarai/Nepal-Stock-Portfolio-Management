@@ -13,7 +13,7 @@ function drawDashboardPortfolio() {
                 arr.push('color: ' + getRandomColor() );
                 portfolios.push(arr);
             }
-console.log(portfolios);
+
             var data = new google.visualization.DataTable();
             data.addColumn('string', 'Scrip');
             data.addColumn('number', 'Total');
@@ -22,8 +22,7 @@ console.log(portfolios);
             data.addRows(portfolios);
 
             var options = {
-                height: 400,
-                title: 'Your Portfolio',
+                height: 450,
                 hAxis: {
                     title: 'Scrips',
                 },
@@ -34,12 +33,18 @@ console.log(portfolios);
 
             var chart = new google.visualization.ColumnChart(
                 document.getElementById('portfolioVerticalChart'));
-
             chart.draw(data, options);
+
+            var pieOptions = {
+                height: 450,
+                is3D: true,
+            };
+            var pieChart = new google.visualization.PieChart(document.getElementById('portfolioPieChart'));
+            pieChart.draw(data, pieOptions);
+
 
         })
         .fail(function(res) {
 
         });
-
 }

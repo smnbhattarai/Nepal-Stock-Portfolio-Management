@@ -91,6 +91,7 @@
                             <input id="date" name="date" value="{{ old('date', $transaction->date) }}" class="form-control flatpickr flatpickr-input" type="text" placeholder="Select buy/sell date">
                         </div>
 
+                        @if($transaction->type == 2)
                         <div class="form-group mb-4 commission">
                             <label for="commission">Commission</label>
                             <input type="text" class="form-control @error('commission') is-invalid @enderror" value="{{ old('commission', $transaction->commission) }}" id="commission" name="commission" placeholder="Broker commission amount">
@@ -98,6 +99,9 @@
                             <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
                         </div>
+                        @else
+                        <input type="hidden" value="0" name="commission">
+                        @endif
 
                         <input type="submit" class="btn btn-primary" value="Save">
 

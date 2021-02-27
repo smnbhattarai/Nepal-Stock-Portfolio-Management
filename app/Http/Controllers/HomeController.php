@@ -17,7 +17,8 @@ class HomeController extends Controller
 
     public function dashboard()
     {
-        return view('dashboard');
+        $portfolios = auth()->user()->portfolios()->with('stock')->get()->sortBy('stock.name');
+        return view('dashboard', compact('portfolios'));
     }
 
 }
