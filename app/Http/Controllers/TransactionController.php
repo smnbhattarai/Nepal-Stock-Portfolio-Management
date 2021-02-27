@@ -81,7 +81,10 @@ class TransactionController extends Controller
      */
     public function edit(Transaction $transaction)
     {
+        if($transaction->exists) $this->authorize('update', $transaction);
+
         $portfolios = Portfolio::with('stock')->where('user_id', auth()->id())->get();
+
         return view('transaction.form', compact('transaction', 'portfolios'));
     }
 

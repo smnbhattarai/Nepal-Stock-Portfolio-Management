@@ -21,6 +21,7 @@ Route::group(['middleware' => 'auth'], function() {
     Route::get('transaction/sell', [TransactionController::class, 'sell'])->name('transaction.sell');
     Route::resource('transaction', TransactionController::class)->except(['index', 'show']);
 
+    // All ajax data fetch routes
     Route::name('ajax.')->prefix('ajax')->group(function() {
         Route::post('stock-remaining', [AjaxController::class, 'getUsersRemainingStock'])->name('stock.remaining');
         Route::get('get-portfolios', [DashboardController::class, 'getPortfolios'])->name('dashboard.portfolio');

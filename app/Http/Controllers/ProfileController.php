@@ -46,6 +46,8 @@ class ProfileController extends Controller
      */
     public function show(Profile $profile)
     {
+        if($profile->exists) $this->authorize('view', $profile);
+
         return view('profile.show', compact('profile'));
     }
 
@@ -55,6 +57,8 @@ class ProfileController extends Controller
      */
     public function edit(Profile $profile)
     {
+        if($profile->exists) $this->authorize('update', $profile);
+
         return view('profile.edit', compact('profile'));
     }
 
