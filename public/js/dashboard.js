@@ -22,7 +22,7 @@ console.log(portfolios);
             data.addRows(portfolios);
 
             var options = {
-                height: 500,
+                height: 400,
                 title: 'Your Portfolio',
                 hAxis: {
                     title: 'Scrips',
