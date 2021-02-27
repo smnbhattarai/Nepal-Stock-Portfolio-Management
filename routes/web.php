@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AjaxController;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\PortfolioController;
@@ -22,6 +23,7 @@ Route::group(['middleware' => 'auth'], function() {
 
     Route::name('ajax.')->prefix('ajax')->group(function() {
         Route::post('stock-remaining', [AjaxController::class, 'getUsersRemainingStock'])->name('stock.remaining');
+        Route::get('get-portfolios', [DashboardController::class, 'getPortfolios'])->name('dashboard.portfolio');
     });
 
 });
