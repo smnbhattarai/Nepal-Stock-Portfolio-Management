@@ -17,7 +17,7 @@ class DatabaseSeeder extends Seeder
             UsersSeeder::class,
             RolePermissionSeeder::class,
             StockSeeder::class,
-            //PortfolioTransactionSeeder::class,
+            PortfolioTransactionSeeder::class,
         ]);
     }
 }

@@ -18,7 +18,7 @@ class PortfolioTransactionSeeder extends Seeder
     {
         $faker = Faker::create();
 
-        for($i = 0; $i < 100; $i++) {
+        for($i = 0; $i < 25; $i++) {
             $user_id = rand(1, 3);
             $stock_id = rand(1, 179);
             $p = Portfolio::where('user_id', $user_id)->where('stock_id', $stock_id)->first();
@@ -29,11 +29,11 @@ class PortfolioTransactionSeeder extends Seeder
             ]);
         }
 
-        for($i = 0; $i < 500; $i++) {
+        for($i = 0; $i < 250; $i++) {
             $user_id = rand(1, 3);
             $stock = Portfolio::where('user_id', $user_id)->inRandomOrder()->first();
             $stock_id = $stock->stock_id;
-            $type = rand(1, 2);
+            $type = 1;
             $quantity = rand(10, 10000);
             $price = rand(135, 3500);
             $date = $faker->date("Y-m-d", 'now');
@@ -43,9 +43,24 @@ class PortfolioTransactionSeeder extends Seeder
                 'stock_id' => $stock_id,
                 'type' => $type,
                 'quantity' => $quantity,
-                'price' => $price,
+                'price' => $price * $quantity,
                 'date' => $date,
                 'commission' => $commission,
+            ]);
+        }
+
+        $transactions = Transaction::all();
+        foreach ($transactions as $transaction) {
+            $q = round(rand(0, 99) / 100 * $transaction->quantity);
+            $p = rand(135, 3500);
+            Transaction::create([
+                'user_id' => $transaction->user_id,
+                'stock_id' => $transaction->stock_id,
+                'type' => 2,
+                'quantity' => $q,
+                'price' => $p * $q,
+                'date' => $faker->date("Y-m-d", 'now'),
+                'commission' => (0.35 * $q * $p) / 100,
             ]);
         }
 

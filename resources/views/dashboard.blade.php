@@ -7,6 +7,45 @@
 
         <div class="layout-px-spacing">
 
+            <div class="row layout-top-spacing">
+                <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12 layout-spacing">
+                    <div class="widget widget-chart-one">
+                        <div class="widget-heading">
+                            <h5 class="">Total Buy</h5>
+                        </div>
+                        <div class="widget-content">
+                            <div class="tabs tab-content">
+                                <h3>Rs. {{ number_format($total_buy, 2) }}</h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12 layout-spacing">
+                    <div class="widget widget-chart-one">
+                        <div class="widget-heading">
+                            <h5 class="">Total Sell</h5>
+                        </div>
+                        <div class="widget-content">
+                            <div class="tabs tab-content">
+                                <h3>Rs. {{ number_format($total_sell, 2) }}</h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12 layout-spacing">
+                    <div class="widget widget-chart-one">
+                        <div class="widget-heading">
+                            <h5 class="">Overall Trade</h5>
+                        </div>
+                        <div class="widget-content">
+                            <div class="tabs tab-content">
+                                <h3>Rs. {{ number_format($total_sell + $total_buy, 2) }}</h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
             @if($portfolios->count())
 
                 <div class="row layout-top-spacing">

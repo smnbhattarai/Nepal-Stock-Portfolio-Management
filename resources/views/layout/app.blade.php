@@ -27,6 +27,7 @@
     <link href="{{ asset('assets/css/components/custom-sweetalert.css') }}" rel="stylesheet" type="text/css" />
     <link href="{{ asset('plugins/bootstrap-select/bootstrap-select.min.css') }}" rel="stylesheet" type="text/css" />
     <link href="{{ asset('assets/css/elements/infobox.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('assets/css/components/cards/card.css') }}" rel="stylesheet" type="text/css" />
 
     <script src="https://www.gstatic.com/charts/loader.js"></script>
 

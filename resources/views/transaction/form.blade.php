@@ -37,7 +37,7 @@
 
                             @if($transaction->exists)
                                 <input class="form-control mb-3" type="text" placeholder="{{ $transaction->type == 1 ? 'Buy' : 'Sell' }}" readonly>
-                                <input type="hidden" name="stock_id" value="{{ $transaction->type }}">
+                                <input type="hidden" name="type" value="{{ $transaction->type }}">
                             @else
                                 <label for="type">Choose buy/sell</label>
                                 <select class="js-states type form-control @error('type') is-invalid @enderror" name="type" id="type">
@@ -72,7 +72,7 @@
 
                         <div class="form-group mb-4">
                             <label for="quantity">Quantity</label>
-                            <input type="number" class="form-control @error('quantity') is-invalid @enderror" value="{{ old('quantity', $transaction->quantity) }}" id="quantity" name="quantity" placeholder="Eg: 175">
+                            <input type="text" class="form-control @error('quantity') is-invalid @enderror" value="{{ old('quantity', $transaction->quantity) }}" id="quantity" name="quantity" placeholder="Eg: 175">
                             @error('quantity')
                             <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
@@ -81,6 +81,7 @@
                         <div class="form-group mb-4">
                             <label for="price">Total Price</label>
                             <input type="text" class="form-control @error('price') is-invalid @enderror" value="{{ old('price', $transaction->price) }}" id="price" name="price" placeholder="Eg: 500">
+                            <small id="price_help" class="form-text text-muted">Eg: If you bought 10 shares for Rs.285, enter 2850.</small>
                             @error('price')
                             <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
@@ -91,7 +92,6 @@
                             <input id="date" name="date" value="{{ old('date', $transaction->date) }}" class="form-control flatpickr flatpickr-input" type="text" placeholder="Select buy/sell date">
                         </div>
 
-                        @if($transaction->type == 2)
                         <div class="form-group mb-4 commission">
                             <label for="commission">Commission</label>
                             <input type="text" class="form-control @error('commission') is-invalid @enderror" value="{{ old('commission', $transaction->commission) }}" id="commission" name="commission" placeholder="Broker commission amount">
@@ -99,9 +99,6 @@
                             <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
                         </div>
-                        @else
-                        <input type="hidden" value="0" name="commission">
-                        @endif
 
                         <input type="submit" class="btn btn-primary" value="Save">
 

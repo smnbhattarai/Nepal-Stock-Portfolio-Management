@@ -32,10 +32,10 @@
                                     </span>
                                 </td>
                                 <td><span class="bs-tooltip" title="{{ $transaction->stock->name }}" data-placement="right">{{ $transaction->stock->symbol }}</span></td>
-                                <td>{{ $transaction->quantity }}</td>
-                                <td>Rs. {{ $transaction->price }}</td>
+                                <td>{{ number_format($transaction->quantity) }}</td>
+                                <td>Rs. {{ number_format($transaction->price, 2) }}</td>
                                 <td>{{ $transaction->date }}</td>
-                                <td>{{ $transaction->type == 2 ? $transaction->commission : 'N/A' }}</td>
+                                <td>{{ $transaction->type == 2 ? number_format($transaction->commission, 2) : 'N/A' }}</td>
                                 <td class="float-right">
                                     <a href="{{ route('transaction.edit', $transaction) }}" data-toggle="tooltip" data-placement="top"
                                        title="Edit">
