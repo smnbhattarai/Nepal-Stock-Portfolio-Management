@@ -35,7 +35,7 @@
                                 <td>{{ number_format($transaction->quantity) }}</td>
                                 <td>Rs. {{ number_format($transaction->price, 2) }}</td>
                                 <td>{{ $transaction->date }}</td>
-                                <td>{{ $transaction->type == 2 ? number_format($transaction->commission, 2) : 'N/A' }}</td>
+                                <td>Rs. {{ $transaction->type == 2 ? number_format($transaction->commission, 2) : 'N/A' }}</td>
                                 <td class="float-right">
                                     <a href="{{ route('transaction.edit', $transaction) }}" data-toggle="tooltip" data-placement="top"
                                        title="Edit">

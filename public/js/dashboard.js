@@ -37,7 +37,7 @@ function drawDashboardPortfolio() {
 
             var pieOptions = {
                 height: 450,
-                is3D: true,
+                is3D: false,
             };
             var pieChart = new google.visualization.PieChart(document.getElementById('portfolioPieChart'));
             pieChart.draw(data, pieOptions);

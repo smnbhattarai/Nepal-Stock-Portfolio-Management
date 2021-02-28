@@ -17,6 +17,7 @@
                                 <th>Symbol</th>
                                 <th>Name</th>
                                 <th>Description</th>
+                                <th>Added</th>
                                 <th class="no-content"></th>
                             </tr>
                             </thead>
@@ -26,6 +27,7 @@
                                 <td>{{ $portfolio->stock->symbol }}</td>
                                 <td>{{ $portfolio->stock->name }}</td>
                                 <td>{{ $portfolio->description }}</td>
+                                <td>{{ $portfolio->created_at->diffForHumans() }}</td>
                                 <td class="float-right">
                                     <a href="{{ route('portfolio.edit', $portfolio) }}" data-toggle="tooltip" data-placement="top"
                                        title="Edit">
