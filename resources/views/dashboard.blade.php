@@ -48,7 +48,7 @@
 
             @if($portfolios->count())
 
-                <div class="row layout-top-spacing">
+                <div class="row layout-top-spacing showLater" style="visibility: hidden;">
                     <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 layout-spacing">
                         <div class="widget widget-chart-one">
                             <div class="widget-heading">
@@ -64,7 +64,7 @@
                 </div>
 
 
-                <div class="row layout-top-spacing">
+                <div class="row layout-top-spacing showLater" style="visibility: hidden;">
                     <div class="col-xl-7 col-lg-7 col-md-7 col-sm-12 col-12 layout-spacing">
                         <div class="widget widget-chart-one">
                             <div class="widget-content">

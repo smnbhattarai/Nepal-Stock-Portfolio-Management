@@ -39,9 +39,11 @@ function drawDashboardPortfolio() {
                 height: 450,
                 is3D: false,
             };
+
             var pieChart = new google.visualization.PieChart(document.getElementById('portfolioPieChart'));
             pieChart.draw(data, pieOptions);
 
+            $('.showLater').css('visibility', 'visible');
 
         })
         .fail(function(res) {
