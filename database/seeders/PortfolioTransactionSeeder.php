@@ -29,7 +29,7 @@ class PortfolioTransactionSeeder extends Seeder
             ]);
         }
 
-        for($i = 0; $i < 10000; $i++) {
+        for($i = 0; $i < 1000; $i++) {
             $user_id = rand(1, 3);
             $stock = Portfolio::where('user_id', $user_id)->inRandomOrder()->first();
             $stock_id = $stock->stock_id;

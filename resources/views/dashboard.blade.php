@@ -7,6 +7,7 @@
 
         <div class="layout-px-spacing">
 
+            @if($portfolios->count())
             <div class="row layout-top-spacing">
                 <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12 layout-spacing">
                     <div class="widget widget-chart-one">
@@ -45,6 +46,7 @@
                     </div>
                 </div>
             </div>
+            @endif
 
             @if($portfolios->count())
 
@@ -111,7 +113,9 @@
 @endsection
 
 @push('js')
+    @if($portfolios->count())
     <script src="{{ asset('js/dashboard.js') }}"></script>
+    @endif
 @endpush
 
 @push('css')
