@@ -730,7 +730,31 @@ class StockSeeder extends Seeder
             [
                 "securitySymbol" => "CGH",
                 "securityName" => "Chandragiri Hills Limited",
-            ]
+            ],
+            [
+                "securitySymbol" => "SHEL",
+                "securityName" => "Singati Hydro Energy Limited",
+            ],
+            [
+                "securitySymbol" => "GLHL",
+                "securityName" => "Green Life Hydropower Limited",
+            ],
+            [
+                "securitySymbol" => "MLBSL",
+                "securityName" => "Mahila Laghubitta Bittiya Sanstha Ltd",
+            ],
+            [
+                "securitySymbol" => "JLIC",
+                "securityName" => "Jyoti Life Insurance Company Limited",
+            ],
+            [
+                "securitySymbol" => "RURU",
+                "securityName" => "Ru Ru Jalbidhyut Pariyojana Ltd.",
+            ],
+            [
+                "securitySymbol" => "CHDC",
+                "securityName" => "CEDB Hydropower Development Company Limited",
+            ],
         ];
 
         foreach ($stocks as $stock) {
